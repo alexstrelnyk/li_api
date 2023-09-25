@@ -1,0 +1,28 @@
+version: '3.1'
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: 'user'
+      POSTGRES_PASSWORD: 'password'
+      POSTGRES_DB: 'li_api'
+      PGUSER: 'pguser'
+    ports:
+      - '5433:5432'
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data:rw
+      - ./logs/postgresql/:/var/log/postgresql:rw
+      - ./data/dump/:/var/dump/:rw
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_DATABASE: 'li_api'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - 33060:3306
+    volumes:
+      - ./data/mysql:/var/lib/mysql:rw
+      - ./logs/mysql/:/var/log/mysql:rw
+      - ./data/dump/:/var/dump/:rw

@@ -1,0 +1,49 @@
+<?php
+
+$projectPath = __DIR__ . '/src';
+if (!file_exists($projectPath)) {
+    exit(0);
+}
+
+return PhpCsFixer\Config::create()
+    ->setRules([
+        '@Symfony' => false,
+        '@DoctrineAnnotation' => false,
+        'class_definition' => ['single_item_single_line' => true],
+        'ordered_class_elements' => [
+            'order' => [
+                'use_trait',
+                'constant_public',
+                'constant_protected',
+                'constant_private',
+                'property_public_static',
+                'property_protected_static',
+                'property_private_static',
+                'method_public_static',
+                'method_protected_static',
+                'method_private_static',
+                'property_public',
+                'property_protected',
+                'property_private',
+                'construct',
+                'destruct',
+                'magic',
+                'phpunit',
+                'method_public',
+                'method_protected',
+                'method_private',
+            ]
+        ],
+        'array_syntax' => ['syntax' => 'short'],
+        'yoda_style' => false,
+        'phpdoc_to_comment' => false,
+        'single_line_after_imports' => true,
+    ])
+    ->setFinder(
+        PhpCsFixer\Finder::create()
+            ->in($projectPath)
+            ->exclude([
+                'Migrations',
+            ])
+    )
+;
